@@ -14,11 +14,18 @@
 
 from random import randint 
 
+
 def find_optimal_quest(d):
-    
+    max_loot = -1000
+    name_of_max = list(d.keys())[0]
+    for name in d:
+        if d[name] > max_loot:
+            max_loot = d[name]
+            name_of_max = name
+    return name_of_max
     # write your code here
     # it should return the boss with the best loot! Feel free to ask us questions :)
-    pass 
+    # pass
     
 
 
@@ -74,15 +81,18 @@ Josephine Jaramillo
 Magaly Mcgaugh  
 Marshall Meany'''
 
+
 def generate_quest_board():
     d = dict()
     for name in s.split('\n'):
         d[name.strip()] = randint(-1000, 1000)
     return d 
-        
+
+
 def validate_answer(d):
     return max(list((v, k) for (k, v) in d.items()))[1]
-   
+
+
 quests = generate_quest_board()
-find_optimal_quest()
-assert validate_answer(quests) == find_optimal_quest(quest)
+find_optimal_quest(quests)
+assert validate_answer(quests) == find_optimal_quest(quests)
